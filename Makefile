@@ -45,7 +45,8 @@ MAKEFLAGS += --no-print-directory
 GOOS ?= $(shell go env GOOS)
 GOARCH ?= $(shell go env GOARCH)
 HOSTGO := env -u GOOS -u GOARCH -u GOARM -- go
-INTERNAL_PKG=github.com/influxdata/telegraf/internal
+#INTERNAL_PKG=github.com/influxdata/telegraf/internal
+INTERNAL_PKG=github.com/Loongson-Cloud-Community/telegraf
 LDFLAGS := $(LDFLAGS) -X $(INTERNAL_PKG).Commit=$(commit) -X $(INTERNAL_PKG).Branch=$(branch)
 ifneq ($(tag),)
 	LDFLAGS += -X $(INTERNAL_PKG).Version=$(version)
