@@ -2,7 +2,8 @@ FROM cr.loongnix.cn/library/golang:1.20-buster as builder
 WORKDIR /go/src/github.com/influxdata/telegraf
 
 COPY . /go/src/github.com/influxdata/telegraf
-RUN go mod tidy && go mode vendor
+ENV GOPROXY="https://goproxy.cn,direct"
+RUN go mod tidy && go mod vendor
 RUN make go-install
 
 FROM cr.loongnix.cn/library/buildpack-deps:buster-curl
