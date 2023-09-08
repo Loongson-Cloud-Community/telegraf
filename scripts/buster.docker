@@ -9,8 +9,9 @@ RUN make go-install
 FROM cr.loongnix.cn/library/buildpack-deps:buster-curl
 #FROM buildpack-deps:buster-curl
 COPY --from=builder /go/bin/* /usr/bin/
-RUN wget -O etc/telegraf.conf https://github.com/Loongson-Cloud-Community/telegraf/releases/download/1.27.3/telegraf.conf
-COPY etc/telegraf.conf /etc/telegraf/telegraf.conf
+RUN wget https://github.com/Loongson-Cloud-Community/telegraf/releases/download/1.27.3/telegraf.conf
+RUN mkdir /etc/telegraf && cp telegraf.conf /etc/telegraf/
+#COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 EXPOSE 8125/udp 8092/udp 8094
 
